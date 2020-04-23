@@ -20,10 +20,18 @@ app.post("/SignUp",(req,res)=>{
 
 app.post("/login",(req,res)=>{
     let Email = req.body.Email
+    let Password = req.body.Password
     appDB.email_data(Email)
     .then((logindata) => {
-        res.send(logindata)
-        })
+        if (logindata.length == 0){
+            res.send("Email is wrong")
+        }else{appDB.password_data(Password).then((logindata) =>{
+            if (logindata.length == 0){
+                res.send("Password is wrong")
+                }
+            })
+        }
+        res.send("login success")
     })
-
+})
 module.exports = app;
