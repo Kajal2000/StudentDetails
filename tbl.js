@@ -18,11 +18,11 @@ knexData.schema.createTable('Student_deatils_data', (table) => {
     table.string('Mother_Name');
     table.string('Father_Name');
     table.string('Student_Name');
-    table.string('Student_Age');
+    table.integer('Student_Age');
     table.string('Education');
     table.string('Email_Id');
-    table.string('Phone_No');
-    table.string('Aadhar_card');
+    table.integer('Phone_No');
+    table.integer('Aadhar_card');
     table.string("Pan_card");
     table.string("Voter_id_card")
     table.string("Address")

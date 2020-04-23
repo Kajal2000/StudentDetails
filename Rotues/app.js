@@ -34,4 +34,27 @@ app.post("/login",(req,res)=>{
         res.send("login success")
     })
 })
+
+app.post("/PostDeatilsApi",(req,res)=>{
+    Post_data = {
+        Mother_Name : req.body.Mother_Name,
+        Father_Name : req.body.Father_Name,
+        Student_Name : req.body.Student_Name,
+        Student_Age : req.body.Student_Age,
+        Education : req.body.Education,
+        Email_Id : req.body.Email_Id,
+        Phone_No : req.body.Phone_No,
+        Aadhar_card : req.body.Aadhar_card,
+        Pan_card : req.body.Pan_card,
+        Voter_id_card : req.body.Voter_id_card,
+        Address : req.body.Address,
+        Student_Photo : req.body.Student_Photo
+    }
+    appDB.post(Post_data)
+    .then(()=>{
+        res.send("inserted data")
+    }).catch((err)=>{
+        console.log(err)
+    })
+})
 module.exports = app;
