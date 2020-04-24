@@ -82,4 +82,13 @@ app.put("/updateApi/:Id",(req,res)=>{
     })
 })
 
+app.get("/getApi/:Id",(req,res)=>{
+    let Id = req.params.Id
+    appDB.get_data(Id)
+    .then((data)=>{
+        res.send(data)
+    }).catch((err)=>{
+        res.send(err)
+    })
+})
 module.exports = app;

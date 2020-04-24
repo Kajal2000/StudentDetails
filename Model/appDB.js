@@ -19,4 +19,9 @@ let post = (Post_data)=>{
 let update = (update_data,Id)=>{
     return knexData("Student_deatils_data").update(update_data,Id)
 }
-module.exports = {SingUpPost,email_data,password_data,post,update}
+
+let get_data = (Id)=>{
+    return knexData.select("*").from("Student_deatils_data").where("Student_deatils_data.Id",Id)
+}
+
+module.exports = {SingUpPost,email_data,password_data,post,update,get_data}
