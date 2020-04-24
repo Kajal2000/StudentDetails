@@ -57,4 +57,29 @@ app.post("/PostDeatilsApi",(req,res)=>{
         console.log(err)
     })
 })
+
+app.put("/updateApi/:Id",(req,res)=>{
+    let Id = req.params.Id
+    update_data = {
+        Mother_Name : req.body.Mother_Name,
+        Father_Name : req.body.Father_Name,
+        Student_Name : req.body.Student_Name,
+        Student_Age : req.body.Student_Age,
+        Education : req.body.Education,
+        Email_Id : req.body.Email_Id,
+        Phone_No : req.body.Phone_No,
+        Aadhar_card : req.body.Aadhar_card,
+        Pan_card : req.body.Pan_card,
+        Voter_id_card : req.body.Voter_id_card,
+        Address : req.body.Address,
+        Student_Photo : req.body.Student_Photo
+    }
+    appDB.update(update_data,Id)
+    .then(()=>{
+        res.send("updated data")
+    }).catch((err)=>{
+        console.log(err)
+    })
+})
+
 module.exports = app;

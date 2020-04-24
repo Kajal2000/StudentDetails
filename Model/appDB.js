@@ -16,4 +16,7 @@ let post = (Post_data)=>{
     return knexData("Student_deatils_data").insert(Post_data)
 }
 
-module.exports = {SingUpPost,email_data,password_data,post}
+let update = (update_data,Id)=>{
+    return knexData("Student_deatils_data").update(update_data,Id)
+}
+module.exports = {SingUpPost,email_data,password_data,post,update}
