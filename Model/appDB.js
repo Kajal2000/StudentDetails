@@ -24,4 +24,15 @@ let get_data = (Id)=>{
     return knexData.select("*").from("Student_deatils_data").where("Student_deatils_data.Id",Id)
 }
 
-module.exports = {SingUpPost,email_data,password_data,post,update,get_data}
+let search_data = (search)=>{
+    return knexData.select("*")
+    .from("Student_deatils_data").where("Student_deatils_data.Student_Name","like","%" + search+ "%")
+}
+
+let delete_data = (Id) => {
+    return knexData('Student_deatils_data')
+    .where("Student_deatils_data.Id" ,Id) 
+    .del()
+}
+
+module.exports = {SingUpPost,email_data,password_data,post,update,get_data,search_data,delete_data}

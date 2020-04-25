@@ -82,13 +82,24 @@ app.put("/updateApi/:Id",(req,res)=>{
     })
 })
 
-app.get("/getApi/:Id",(req,res)=>{
-    let Id = req.params.Id
-    appDB.get_data(Id)
+app.get("/nameSearch/:search",(req,res)=>{
+    let search = req.params.search
+    appDB.search_data(search)
     .then((data)=>{
         res.send(data)
     }).catch((err)=>{
         res.send(err)
     })
 })
+
+app.delete("/deleteApi/:Id",(req,res)=>{
+    let Id = req.params.Id
+    appDB.delete_data(Id)
+    .then(()=>{
+        res.send("deleted data")
+    }).catch((err)=>{
+        console.log(err)
+    })
+})
+
 module.exports = app;
