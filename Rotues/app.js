@@ -82,6 +82,16 @@ app.put("/updateApi/:Id",(req,res)=>{
     })
 })
 
+app.get("/getApi/:Id",(req,res)=>{
+    let Id = req.params.Id
+    appDB.get_data(Id)
+    .then((resp_data)=>{
+        res.send(resp_data)
+    }).catch((err)=>{
+        console.log(err)
+    })
+})
+
 app.get("/nameSearch/:search",(req,res)=>{
     let search = req.params.search
     appDB.search_data(search)
