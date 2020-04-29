@@ -1,5 +1,5 @@
 const express = require('express');
-const admin = express.Router();
+const admin = express();
 const adminDB  = require("../Model/adminDB")
 
 
