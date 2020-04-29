@@ -7,10 +7,9 @@ admin.get("/AdminApi/:Role_Id",(req,res)=>{
     let Role_Id = req.params.Role_Id
     adminDB.get_admin(Role_Id)
     .then((data)=>{
-        res.send(data)
-    }).catch((err)=>{
-        res.send(err)
+        let adminData = data[0]["RoleType"]
+       console.log(adminData)
     })
-})
+});
 
 module.exports = admin;

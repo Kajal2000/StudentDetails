@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const appDB  = require("../Model/appDB")
+var jwt = require('jsonwebtoken');
 
 
 app.post("/roleApi",(req,res)=>{
@@ -35,18 +36,24 @@ app.post("/login",(req,res)=>{
     let Email = req.body.Email
     let Password = req.body.Password
     appDB.email_data(Email)
-    .then((logindata) => {
-        if (logindata.length == 0){
+    .then((store_data) => {
+        if (store_data.length == 0){
             res.send("Email is wrong")
-        }else{appDB.password_data(Password).then((logindata) =>{
-            if (logindata.length == 0){
+        }else{appDB.password_data(Password).then((store_data) =>{
+            if (store_data.length == 0){
                 res.send("Password is wrong")
+            }else{
+                let newToken = jwt.sign({ "appDB" : store_data},"kajal")
+                    // console.log(newToken)
+                    res.cookie(newToken)
+                    res.send('loing successsful')
                 }
             })
         }
-        res.send("login success")
+    }).catch((err)=>{
+        console.log(err); 
     })
-})
+});
 
 // app.get("/roletypeApi",(req,res)=>{
 //     appDB.get_roleData()
