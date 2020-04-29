@@ -44,7 +44,6 @@ app.post("/login",(req,res)=>{
                 res.send("Password is wrong")
             }else{
                 let newToken = jwt.sign({ "appDB" : store_data},"kajal")
-                    // console.log(newToken)
                     res.cookie(newToken)
                     res.send('loing successsful')
                 }
@@ -54,7 +53,6 @@ app.post("/login",(req,res)=>{
         console.log(err); 
     })
 });
-
 // app.get("/roletypeApi",(req,res)=>{
 //     appDB.get_roleData()
 //     .then((respData)=>{
