@@ -6,13 +6,15 @@ knexData.schema.createTable('SignUp', (table) => {
     table.string('UserName');
     table.string('Email');
     table.string('Password');
+    table.integer("Role_Id").unsigned()
+    table.foreign("Role_Id").references("roleType.Role_Id")
     }).then(()=>{
         console.log("created tbl")
     }).catch((err)=>{
         console.log(err,"some error")
     })
 
-
+// // student deatils tbl
 knexData.schema.createTable('Student_deatils_data', (table) => {
     table.increments("Id")
     table.string('Mother_Name');
@@ -32,3 +34,13 @@ knexData.schema.createTable('Student_deatils_data', (table) => {
     }).catch((err)=>{
         console.log(err,"there is some err")
     })
+// admins tbl
+    knexData.schema.createTable('roleType', (table) => {
+        table.increments("Role_Id")
+        table.string('RoleType');
+        }).then(()=>{
+            console.log("tbl created")
+        }).catch((err)=>{
+            console.log(err,"there is some err")
+        })
+    

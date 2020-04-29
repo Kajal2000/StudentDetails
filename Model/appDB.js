@@ -1,5 +1,9 @@
 const knexData = require('../connection.js');
 
+let rolePost = (roleData)=>{
+    return knexData("roleType").insert(roleData)
+}
+
 let SingUpPost = (data)=>{
     return knexData("SignUp").insert(data)
 }
@@ -10,6 +14,10 @@ let email_data = (Email) => {
 
 let password_data = (Password) => {
     return knexData.select("*").from("SignUp").havingIn("Password",Password)
+}
+
+let get_roleData = (search)=>{
+    return knexData.from("roleType").where("roleType.RoleType","like","%" + search+ "%")
 }
 
 let post = (Post_data)=>{
@@ -35,4 +43,4 @@ let delete_data = (Id) => {
     .del()
 }
 
-module.exports = {SingUpPost,email_data,password_data,post,update,get_data,search_data,delete_data}
+module.exports = {SingUpPost,email_data,password_data,post,update,get_data,search_data,delete_data,rolePost,get_roleData}

@@ -2,12 +2,25 @@ const express = require('express');
 const app = express();
 const appDB  = require("../Model/appDB")
 
+
+app.post("/roleApi",(req,res)=>{
+    roleData = {
+        RoleType : req.body.RoleType
+    }
+    appDB.rolePost(roleData)
+    .then(()=>{
+        res.send("inserted post")
+    }).catch((err)=>{
+        res.send(err)
+    })
+})
+
 app.post("/SignUp",(req,res)=>{
-    data = {
-        UserId : req.body.UserId,
+    let data = {
         UserName: req.body.UserName,
         Email : req.body.Email,
-        Password : req.body.Password
+        Password : req.body.Password,
+        Role_Id : req.body.Role_Id
     }
     appDB.SingUpPost(data)
     .then((respnoe_data)=>{
@@ -35,26 +48,41 @@ app.post("/login",(req,res)=>{
     })
 })
 
-app.post("/PostDeatilsApi",(req,res)=>{
-    Post_data = {
-        Mother_Name : req.body.Mother_Name,
-        Father_Name : req.body.Father_Name,
-        Student_Name : req.body.Student_Name,
-        Student_Age : req.body.Student_Age,
-        Education : req.body.Education,
-        Email_Id : req.body.Email_Id,
-        Phone_No : req.body.Phone_No,
-        Aadhar_card : req.body.Aadhar_card,
-        Pan_card : req.body.Pan_card,
-        Voter_id_card : req.body.Voter_id_card,
-        Address : req.body.Address,
-        Student_Photo : req.body.Student_Photo
-    }
-    appDB.post(Post_data)
-    .then(()=>{
-        res.send("inserted data")
-    }).catch((err)=>{
-        console.log(err)
+// app.get("/roletypeApi",(req,res)=>{
+//     appDB.get_roleData()
+//     .then((respData)=>{
+//         // console.log(respData)
+//         let storeData = respData[2]["RoleType"]
+//     })
+// })
+
+app.post("/deatilsApi/:search",(req,res)=>{
+    let search = req.params.search 
+    appDB.get_roleData(search)
+    .then((respData)=>{
+        let storeData = respData[0]["RoleType"]
+        if (storeData == "Student"){
+            let Post_data = {
+                Mother_Name : req.body.Mother_Name,
+                Father_Name : req.body.Father_Name,
+                Student_Name : req.body.Student_Name,
+                Student_Age : req.body.Student_Age,
+                Education : req.body.Education,
+                Email_Id : req.body.Email_Id,
+                Phone_No : req.body.Phone_No,
+                Aadhar_card : req.body.Aadhar_card,
+                Pan_card : req.body.Pan_card,
+                Voter_id_card : req.body.Voter_id_card,
+                Address : req.body.Address,
+                Student_Photo : req.body.Student_Photo
+            }
+            appDB.post(Post_data)
+            .then(()=>{
+                res.send("inserted data")
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
     })
 })
 
