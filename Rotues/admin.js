@@ -1,23 +1,32 @@
 const express = require('express');
 const admin = express();
 const adminDB  = require("../Model/adminDB")
+var jwt = require('jsonwebtoken');
 
 
 admin.get("/AdminApi/:Role_Id",(req,res)=>{
     let Role_Id = req.params.Role_Id
-    adminDB.get_admin(Role_Id)
-    .then((data)=>{
-        let adminData = data[0]["RoleType"]
-        if (adminData == "Admin"){
-            adminDB.get_datas()
-            .then((resp_data)=>{
-                res.send(resp_data)
-            }).catch((err)=>{
-                console.log(err)
-            }) 
-        }
+    var alltoken = req.headers.cookie
+    var token = alltoken.split('=undefined')
+    token = (token[token.length-2]).slice(2,600)
+    jwt.verify(token, 'kajal', (err,data) => {
+        for(let i = 0; i < data['appDB'].length; i++)
+        var Role_Id_Admin = data['appDB'][i]['Role_Id']
+        adminDB.get_admin(Role_Id)
+        .then((data)=>{
+            let adminData = data[0]["Role_Id"]
+            if (adminData == Role_Id_Admin){
+                adminDB.get_datas()
+                .then((resp_data)=>{
+                    res.send(resp_data)
+                }).catch((err)=>{
+                    console.log(err)
+                }) 
+            }
+        })
     })
 });
+
 admin.get("/nameSearch/:search",(req,res)=>{
     let search = req.params.search
     adminDB.search_data(search)

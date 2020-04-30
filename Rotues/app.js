@@ -39,7 +39,8 @@ app.post("/login",(req,res)=>{
     .then((store_data) => {
         if (store_data.length == 0){
             res.send("Email is wrong")
-        }else{appDB.password_data(Password).then((store_data) =>{
+        }else{appDB.password_data(Password)
+            .then((store_data) =>{
             if (store_data.length == 0){
                 res.send("Password is wrong")
             }else{
