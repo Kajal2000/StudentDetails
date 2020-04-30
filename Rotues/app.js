@@ -80,7 +80,8 @@ app.post("/deatilsApi/:search",(req,res)=>{
                 Pan_card : req.body.Pan_card,
                 Voter_id_card : req.body.Voter_id_card,
                 Address : req.body.Address,
-                Student_Photo : req.body.Student_Photo
+                Student_Photo : req.body.Student_Photo,
+                Role_Id : req.body.Role_Id
             }
             appDB.post(Post_data)
             .then(()=>{

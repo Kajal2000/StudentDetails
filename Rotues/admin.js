@@ -23,6 +23,9 @@ admin.get("/AdminApi/:Role_Id",(req,res)=>{
                     console.log(err)
                 }) 
             }
+            else{
+                console.log("you can't acess")
+            }
         })
     })
 });

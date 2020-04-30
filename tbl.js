@@ -29,6 +29,8 @@ knexData.schema.createTable('Student_deatils_data', (table) => {
     table.string("Voter_id_card")
     table.string("Address")
     table.string("Student_Photo")
+    table.integer("Role_Id").unsigned()
+    table.foreign("Role_Id").references("roleType.Role_Id")
     }).then(()=>{
         console.log("tbl created")
     }).catch((err)=>{
@@ -43,4 +45,3 @@ knexData.schema.createTable('Student_deatils_data', (table) => {
         }).catch((err)=>{
             console.log(err,"there is some err")
         })
-    
