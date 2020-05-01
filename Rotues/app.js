@@ -69,6 +69,7 @@ app.post("/deatilsApi/:search",(req,res)=>{
         let storeData = respData[0]["RoleType"]
         if (storeData == "Student"){
             let Post_data = {
+                Id : req.body.Id,
                 Mother_Name : req.body.Mother_Name,
                 Father_Name : req.body.Father_Name,
                 Student_Name : req.body.Student_Name,

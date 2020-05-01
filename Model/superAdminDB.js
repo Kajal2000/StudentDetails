@@ -8,16 +8,19 @@ let get_all_data = ()=>{
     return knex.select("*").from("Student_deatils_data")
 }
 
-let getAll = () => {
-    return knex("Student_deatils_data")
-    .join('roleType','Student_deatils_data.Id','=','roleType.Role_Id')
-    .select("*")
+let updateAdmin = (Post_data,Id)=>{
+    return knex("Student_deatils_data").update(Post_data).where('Student_deatils_data.Id',Id)
 }
 
-// let getAll = (Role_Id) => {
-//     return knex("roleType")
-//     .join('Student_deatils_data','roleType.Role_Id','=','Student_deatils_data.Id')
-//     .select("*")
+let updateD = (update_data,Id)=>{
+    return knex("Student_deatils_data").update(update_data).where('Student_deatils_data.Id',Id)
+}
 
-// }
-module.exports = {get_superAdmin_id,get_all_data,getAll}
+let DeleteData = (Id)=>{
+    return knex("Student_deatils_data")
+    .where('Student_deatils_data.Id',Id)
+    .del()
+}
+
+
+module.exports = {get_superAdmin_id,get_all_data,updateAdmin,updateD,DeleteData}
