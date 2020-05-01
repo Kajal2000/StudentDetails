@@ -54,13 +54,6 @@ app.post("/login",(req,res)=>{
         console.log(err); 
     })
 });
-// app.get("/roletypeApi",(req,res)=>{
-//     appDB.get_roleData()
-//     .then((respData)=>{
-//         // console.log(respData)
-//         let storeData = respData[2]["RoleType"]
-//     })
-// })
 
 app.post("/deatilsApi/:search",(req,res)=>{
     let search = req.params.search 
