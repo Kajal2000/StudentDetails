@@ -4,13 +4,14 @@ const app = express();
 app.use(bodyParser.json())
 
 const data1 = require("./Rotues/app")
-app.use("/Apis",data1)
+app.use("/",data1)
 
 const data2 = require("./Rotues/admin")
-app.use("/adminApi",data2)
+app.use("/",data2)
 
 const data3 = require("./Rotues/superAdmin")
-app.use("/superApi",data3)
+app.use("/",data3)
+
 
 app.listen(8000,()=>{
     console.log("server is listening..............)")

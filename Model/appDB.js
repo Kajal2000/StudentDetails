@@ -16,6 +16,10 @@ let password_data = (Password) => {
     return knexData.select("*").from("SignUp").havingIn("Password",Password)
 }
 
+let get_student = (Role_Id)=>{
+    return knexData.select("*").from("roleType").where("Role_Id",Role_Id)
+}
+
 let get_roleData = (search)=>{
     return knexData.from("roleType").where("roleType.RoleType","like","%" + search+ "%")
 }
@@ -43,4 +47,6 @@ let delete_data = (Id) => {
     .del()
 }
 
-module.exports = {SingUpPost,email_data,password_data,post,update,get_data,search_data,delete_data,rolePost,get_roleData}
+module.exports = {SingUpPost,email_data,
+    password_data,post,update,get_data,search_data,
+    delete_data,rolePost,get_roleData,get_student}
